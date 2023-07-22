@@ -23,7 +23,7 @@
 
     // HAPUS DATA
     if(isset($_POST['hapus'])){
-        $id= $_GET['id'];
+        $id= $_POST['id'];
         mysqli_query($conn,"DELETE FROM todolist WHERE id='$id'");
     }
 ?>
