@@ -11,6 +11,8 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,17 +23,19 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
         foreach($data as $lili):
         ?>
         <!-- kotak -->
+
         <div class="card m-3 kotakk" style="width: 18rem; height: 13rem;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $lili['id']; ?>">
+
             <div class="card-body">
                 <h4 class="card-title"><?php echo $lili['judul']; ?></h4>
                 <p class="card-text"><?php echo $lili['isi']; ?></p>
             </div>
-
             <div class="card-body d-flex justify-content-between">
                 <!-- <p class="card-link">Tanggal</p> -->
 
                 <div class="">
-                    <input type="checkbox" style="transform:scale(1.5) ;" class="m-2">
+
+                    <input type="checkbox" id="checkbox_task" style="transform:scale(1.5) ;" class="m-2">
                     <!-- <a href="#"><img src="ctg.png" width="20"> </a> -->
                     <a href="#"><img src="hapus.png" width="20"> </a>
                 </div>
@@ -44,6 +48,7 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
         <!-- kotak -->
 
         <!-- Kotak 2 -->
+
         <div class="card m-3" style="width: 18rem ; height: 13rem;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#baru">
             <div class="card-body">
                 <h4 class="card-title">Tambah Task</h4>
@@ -106,10 +111,49 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
     </div>
 
 
+    </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal -->
+    <!-- </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add to task</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Title</label>
+                            <input type="text" placeholder="Masukkan Title Task" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Isi</label>
+                            <input type="text" placeholder="Masukkan Isi Task" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="ubahwarnacard.js"></script>
+
+
     <script src="color.js"></script>
 </body>
 
