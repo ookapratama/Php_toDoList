@@ -1,3 +1,8 @@
+<?php
+include('koneksi.php');
+include('proses.php');
+$ali= mysqli_query($conn,"SELECT * FROM todolist");
+?>
 <!doctype html>
 <html lang="en">
 
@@ -14,14 +19,19 @@
     <h1 class="m-3">To do List</h1>
 
     <div class="d-flex">
+        <?php
+        foreach($data as $lili):
+        ?>
         <!-- kotak -->
-        <div id="card_task" class="card m-3" style="width: 18rem; height: 13rem;">
+
+        <div class="card m-3 kotakk" style="width: 18rem; height: 13rem;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $lili['id']; ?>">
+
             <div class="card-body">
-                <h4 class="card-title">Belajar buat aplikasi</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h4 class="card-title"><?php echo $lili['judul']; ?></h4>
+                <p class="card-text"><?php echo $lili['isi']; ?></p>
             </div>
             <div class="card-body d-flex justify-content-between">
-                <p class="card-link">Tanggal</p>
+                <!-- <p class="card-link">Tanggal</p> -->
 
                 <div class="">
 
@@ -34,23 +44,71 @@
                 <!-- <a href="#" class="card-link">Another link</a> -->
             </div>
         </div>
+        <?php endforeach; ?>
         <!-- kotak -->
 
         <!-- Kotak 2 -->
-        <a href="">
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="card m-3 kotak" style="width: 18rem ; height: 13rem;">
-                <div class="card-body">
-                    <div class="text-center mt-5">
-                        <!-- <a href="#"> -->
-                        <img src="add.png" width="60">
-                        <!-- </a> -->
-                    </div>
+
+        <div class="card m-3" style="width: 18rem ; height: 13rem;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#baru">
+            <div class="card-body">
+                <h4 class="card-title">Tambah Task</h4>
+                <div class="text-center mt-5">
+                    <a href="#"><img src="add.png" width="60" > </a>
                 </div>
+            </div>
+            <!-- Kotak 2 -->
+        </div>
 
-        </a>
-        <!-- Kotak 2 -->
+<!-- Modal tambah-->
+<div class="modal fade" id="baru" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah LIST</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="" method="POST">
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="Masukan Judul" name="judul"><br>
+        <input type="text" class="form-control" placeholder="Masukan Isi" name="isi">
+      </div>
+      <div class="modal-footer">
+        <button name="tambah" class="btn btn-primary">Tambah</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal edit-->
+<?php
+        foreach($data as $lili):
+        ?>
+<div class="modal fade" id="edit<?php echo $lili['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit LIST</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="" method="POST">
+      <?php $data= mysqli_fetch_assoc($ali) ?>
+      <div class="modal-body">
+        <input type="hidden" class="form-control" value="<?php echo $data['id'] ?>" name="id"> 
+        <input type="text" class="form-control" value="<?php echo $data['judul'] ?>" name="judul"><br>
+        <input type="text" class="form-control" value="<?php echo $data['isi'] ?>" name="isi">
+      </div>
+      <div class="modal-footer">
+        <button name="edit" class="btn btn-primary">Edit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<?php endforeach; ?>
 
 
+    </div>
 
 
     </div>
@@ -95,6 +153,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="ubahwarnacard.js"></script>
 
+
+    <script src="color.js"></script>
 </body>
 
 </html>
