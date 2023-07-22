@@ -73,7 +73,7 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
         <input type="text" class="form-control" placeholder="Masukan Isi" name="isi">
       </div>
       <div class="modal-footer">
-        <button name="tambah" class="btn btn-primary">Tambah</button>
+        <button name="tambah" onclick="warna()" class="btn btn-primary">Tambah</button>
       </div>
       </form>
     </div>
