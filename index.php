@@ -21,7 +21,7 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
         foreach($data as $lili):
         ?>
         <!-- kotak -->
-        <div class="card m-3" style="width: 18rem; height: 13rem;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit">
+        <div class="card m-3 kotakk" style="width: 18rem; height: 13rem;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $lili['id']; ?>">
             <div class="card-body">
                 <h4 class="card-title"><?php echo $lili['judul']; ?></h4>
                 <p class="card-text"><?php echo $lili['isi']; ?></p>
@@ -76,7 +76,10 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
 </div>
 
 <!-- Modal edit-->
-<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php
+        foreach($data as $lili):
+        ?>
+<div class="modal fade" id="edit<?php echo $lili['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -97,6 +100,7 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
     </div>
   </div>
 </div>
+<?php endforeach; ?>
 
 
     </div>
@@ -106,7 +110,7 @@ $ali= mysqli_query($conn,"SELECT * FROM todolist");
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+    <script src="color.js"></script>
 </body>
 
 </html>
